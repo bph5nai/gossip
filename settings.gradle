@@ -1,0 +1,2 @@
+include ':app', ':gossip'
+rootProject.name='Whispers'
