@@ -5,7 +5,7 @@ import okhttp3.Request
 
 fun send(req: String) {
     val client = OkHttpClient()
-    val request = Request.Builder().url("ws://192.168.0.23:8080/ws").build()
+    val request = Request.Builder().url("ws://192.168.43.169:8080/ws").build()
     client.newWebSocket(request, listener(req))
     client.dispatcher().executorService().shutdown()
 }
