@@ -4,7 +4,9 @@ import com.brianphiri.gossip.dataSource.ws.wsConnectionClient
 
 fun send(req: String) {
     val request = wsConnectionClient()
-    request.client.newWebSocket(request.request, listener(req))
-    request.client.dispatcher().executorService().shutdown()
+    if(request != null) {
+        request.client.newWebSocket(request.request, listener(req))
+        request.client.dispatcher().executorService().shutdown()
+    }
 }
 
