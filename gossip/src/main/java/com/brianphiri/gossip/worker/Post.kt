@@ -3,8 +3,6 @@ package com.brianphiri.gossip.worker
 import android.content.Context
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.brianphiri.gossip.dataSource.room.EventLogs
-import com.brianphiri.gossip.dataSource.room.InternalDatabase
 import kotlinx.coroutines.runBlocking
 import java.lang.Exception
 

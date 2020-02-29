@@ -1,4 +1,4 @@
-package com.bosch.appcrunch.playground.workermanager
+package com.brianphiri.gossip.worker
 
 data class Request(
     var actor: String,

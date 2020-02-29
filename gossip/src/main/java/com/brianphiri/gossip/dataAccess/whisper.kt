@@ -7,8 +7,8 @@ import com.brianphiri.gossip.util.getCurrentTime
 import com.brianphiri.gossip.util.isOnline
 import com.google.gson.Gson
 
-class Whisper {
-    fun Context.whisper(actor: String, tag: String, resource: String, eventType: String, metadata : Map<String, Any> = mapOf()){
+class Whisper(private val context: Context) {
+    fun whisper(actor: String, tag: String, resource: String, eventType: String, metadata : Map<String, Any> = mapOf()){
         val r = WsRequest()
         r.actor = actor
         r.resource = resource
@@ -18,11 +18,11 @@ class Whisper {
         r.time = getCurrentTime()
 
         val request = Gson().toJson(r)
-        if(isOnline(this)) {
+        if(isOnline(context)) {
             send(Gson().toJson(r))
-            checkIfDatabaseHasData(this)
+            checkIfDatabaseHasData(context)
         } else {
-            writeToInternalDatabase(this, request)
+            writeToInternalDatabase(context, request)
         }
     }
 }
