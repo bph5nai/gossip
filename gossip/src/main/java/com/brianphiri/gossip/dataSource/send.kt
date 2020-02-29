@@ -1,12 +1,24 @@
 package com.brianphiri.gossip.dataSource
 
-import com.brianphiri.gossip.dataSource.ws.wsConnectionClient
+import android.content.Context
+import androidx.work.Data
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
+import com.brianphiri.gossip.util.postDataConstraints
+import com.brianphiri.gossip.worker.Post
 
-fun send(req: String) {
-    val request = wsConnectionClient()
-    if(request != null) {
-        request.client.newWebSocket(request.request, listener(req))
-        request.client.dispatcher.executorService.shutdown()
-    }
+fun Context.send(req: String) {
+    val builder = Data.Builder()
+    builder.putString("logs", req)
+    val recordLog = OneTimeWorkRequest.Builder(Post::class.java)
+        .setInputData(builder.build())
+        .setConstraints(postDataConstraints)
+        .build()
+    WorkManager.getInstance(this).enqueueUniqueWork(
+        "logs",
+        ExistingWorkPolicy.REPLACE,
+        recordLog
+    )
 }
 

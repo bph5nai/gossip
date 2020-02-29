@@ -19,7 +19,7 @@ class Whisper(private val context: Context) {
 
         val request = Gson().toJson(r)
         if(isOnline(context)) {
-            send(Gson().toJson(r))
+            context.send(Gson().toJson(r))
             checkIfDatabaseHasData(context)
         } else {
             writeToInternalDatabase(context, request)

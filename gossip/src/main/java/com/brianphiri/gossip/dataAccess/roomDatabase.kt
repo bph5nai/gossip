@@ -24,7 +24,7 @@ fun checkIfDatabaseHasData(context: Context) {
         if(logs.isNotEmpty()){
             for (i in logs) {
                 if(isOnline(context)){
-                    send(i.report)
+                    context.send(i.report)
                     dao.removeLog(i.id)
                 } else {
                     break
