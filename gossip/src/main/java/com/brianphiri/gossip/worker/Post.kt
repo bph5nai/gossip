@@ -12,7 +12,7 @@ class Post(context: Context, params: WorkerParameters) : Worker(context, params)
     override fun doWork(): Result {
         return try {
             val data = inputData
-            val jsonString = data.getString("log")!!
+            val jsonString = data.getString("logs")!!
             runBlocking {
                 val request = wsConnectionClient()
                 if(request != null) {
