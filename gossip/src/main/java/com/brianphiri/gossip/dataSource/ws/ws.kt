@@ -1,5 +1,5 @@
 package com.brianphiri.gossip.dataSource.ws
 
 object ws {
-    const val ENDPOINT = "ws://192.168.0.27:8080/ws"
+    const val ENDPOINT = "wss://gossip.boschappcrunch254.co.ke/ws"
 }
